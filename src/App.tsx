@@ -1,12 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
-import './App.css';
 import { Product, Order } from './data/handleOrder';
 import { ProductList } from './components/productList';
 import { products } from './data/data';
 
 const App: FunctionComponent = () => {
     const [order, setOrder] = useState<Order>(new Order());
-    const categories = products.map((p) => p.category);
+    const categories: string[] = [...new Set(products.map((p) => p.category))];
 
     const addToOrder = (product: Product, quantity: number) => {
         setOrder((order) => {
@@ -16,7 +15,7 @@ const App: FunctionComponent = () => {
     };
 
     return (
-        <div className='App bg-orange-400'>
+        <div className='bg-orange-300 min-h-screen'>
             <ProductList
                 products={products}
                 categories={categories}

@@ -22784,6 +22784,41 @@ video {
           animation: bounce 1s infinite;
 }
 
+/* Header styles
+.header {
+    @apply flex items-center justify-between flex-wrap bg-teal-500 p-6;
+}
+
+.header button {
+    @apply flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400;
+}
+
+.header button:hover {
+    @apply text-white border-white;
+}
+
+/* Main Content Styles */
+
+/* .main-content {
+    @apply flex;
+}
+
+/* Product List Styles */
+
+/* .product-list {
+    @apply w-2/3 mb-4;
+} */
+
+/* Category List Styles */
+
+/* .category-list {
+    @apply flex-col w-1/3 mb-4 h-12;
+}
+
+.category-list button{
+    @apply flex items-center px-3 py-2 border rounded border-teal-400
+} */
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
