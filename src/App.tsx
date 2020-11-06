@@ -23,7 +23,7 @@ const App: FunctionComponent = () => {
     }, []);
 
     return (
-        <div className='bg-orange-300 min-h-screen'>
+        <div className='bg-gray-300 min-h-screen'>
             <ProductList
                 products={products}
                 categories={categories}
