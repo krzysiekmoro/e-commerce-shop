@@ -1,10 +1,11 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Product, Order } from './data/handleOrder';
 import { ProductList } from './components/productList';
-import { products } from './data/data';
+import { loadProducts } from './data/dataHandler';
 
 const App: FunctionComponent = () => {
     const [order, setOrder] = useState<Order>(new Order());
+    const [products, setProducts] = useState<Product[]>([]);
     const categories: string[] = [...new Set(products.map((p) => p.category))];
 
     const addToOrder = (product: Product, quantity: number) => {
@@ -13,6 +14,13 @@ const App: FunctionComponent = () => {
             return order;
         });
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await loadProducts(setProducts);
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className='bg-orange-300 min-h-screen'>
