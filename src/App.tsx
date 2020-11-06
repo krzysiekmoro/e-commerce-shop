@@ -7,6 +7,7 @@ import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 const App: FunctionComponent = () => {
     const [order, setOrder] = useState<Order>(new Order());
     const [products, setProducts] = useState<Product[]>([]);
+    const [force, setForce] = useState<number>(0);
     const categories: string[] = [...new Set(products.map((p) => p.category))];
 
     const addToOrder = (product: Product, quantity: number) => {
@@ -14,6 +15,7 @@ const App: FunctionComponent = () => {
             order.addProduct(product, quantity);
             return order;
         });
+        setForce(force + 1);
     };
 
     useEffect(() => {
