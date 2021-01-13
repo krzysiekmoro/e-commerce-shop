@@ -1,8 +1,16 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Product, Order } from './data/handleOrder';
 import { ProductList } from './components/productList';
-import { loadProducts } from './data/dataHandler';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { OrderDetails } from './components/orderDetails';
+import { Summary } from './components/summary';
+import { loadProducts, storeOrder } from './data/dataHandler';
+import {
+    Switch,
+    Route,
+    Redirect,
+    BrowserRouter,
+    RouteComponentProps,
+} from 'react-router-dom';
 
 const App: FunctionComponent = () => {
     const [order, setOrder] = useState<Order>(new Order());
@@ -25,6 +33,10 @@ const App: FunctionComponent = () => {
         fetchData();
     }, []);
 
+    const submitCallback = (routeProps: RouteComponentProps) => {
+        storeOrder(order, (id) => routeProps.history.push(`/summary/${id}`));
+    };
+
     return (
         <div className='bg-gray-300 min-h-screen'>
             <BrowserRouter>
@@ -37,6 +49,17 @@ const App: FunctionComponent = () => {
                             addToOrder={addToOrder}
                         />
                     </Route>
+                    <Route
+                        path='/order'
+                        render={(props) => (
+                            <OrderDetails
+                                {...props}
+                                order={order}
+                                submitCallback={() => submitCallback(props)}
+                            />
+                        )}
+                    />
+                    <Route path='/summary/:id' component={Summary} />
                     <Redirect to='/products' />
                 </Switch>
             </BrowserRouter>

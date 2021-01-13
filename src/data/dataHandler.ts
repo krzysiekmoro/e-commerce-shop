@@ -10,8 +10,6 @@ const urls = {
     orders: `${protocol}://${hostname}:${port}/orders`
 }
 
-
-
 export const loadProducts = async (callback: (products: Product[]) => void): Promise<void> => {
     await Axios.get(urls.products).then(res => callback(res.data))
 }

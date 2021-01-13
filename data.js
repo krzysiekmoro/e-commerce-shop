@@ -59,9 +59,9 @@ module.exports = function () {
             },
             {
                 id: 9,
-                name: 'Fisher Skies',
+                name: 'Fischer Skies',
                 category: 'Wintersports',
-                description: 'Great quality skies for beginners',
+                description: 'Great quality skies for experienced athletes',
                 price: 1200,
             },
         ],
