@@ -24,13 +24,13 @@ export const ProductList: FunctionComponent<Props> = (props) => {
     return (
         <div>
             <Header order={props.order} />
-            <div className='flex'>
+            <div>
                 <CategoryList
                     categories={props.categories}
                     selected={selectedCategory}
                     selectCategory={selectCategory}
                 />
-                <div className='w-3/4'>
+                <div>
                     {filteredProducts.map((p) => (
                         <ProductItem
                             key={p.id}

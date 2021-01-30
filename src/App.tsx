@@ -38,7 +38,7 @@ const App: FunctionComponent = () => {
     };
 
     return (
-        <div className='bg-gray-300 min-h-screen'>
+        <div>
             <BrowserRouter>
                 <Switch>
                     <Route path='/products'>
