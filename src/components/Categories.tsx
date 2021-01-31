@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react';
+import { CategoriesWrapper } from '../styles/categories.styles';
+import { Button } from '../styles/header.styles';
 
 interface Props {
     selected: string;
@@ -6,22 +8,21 @@ interface Props {
     selectCategory: (category: string) => void;
 }
 
-export const CategoryList: FunctionComponent<Props> = (props) => {
+export const Categories: FunctionComponent<Props> = (props) => {
     return (
-        <div className='flex flex-col origin-top-left absolute left-0 mx-4 shadow-lg bg-white ring-1 ring-black ring-opacity-5'>
+        <CategoriesWrapper>
             {['All', ...props.categories].map((c) => {
-                let btnClass =
-                    props.selected === c ? 'btn-blue-chosen' : 'btn-blue';
+                let btnClass = props.selected === c ? '' : '';
                 return (
-                    <button
+                    <Button
                         key={c}
                         onClick={() => props.selectCategory(c)}
                         className={`${btnClass}`}
                     >
                         {c}
-                    </button>
+                    </Button>
                 );
             })}
-        </div>
+        </CategoriesWrapper>
     );
 };
