@@ -1,21 +1,22 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Product } from '../data/handleOrder';
+import { ItemWrapper } from '../styles/item.styles';
 
 interface Props {
     product: Product;
     callback: (product: Product, quantity: number) => void;
 }
 
-export const ProductItem: FunctionComponent<Props> = (props) => {
+export const Item: FunctionComponent<Props> = (props) => {
     const [quantity, setQuantity] = useState<number>(1);
 
     return (
-        <div>
-            <h4>
-                <div>{props.product.name}</div>
-                <span>${props.product.price.toFixed(2)}</span>
-            </h4>
-            <h5>{props.product.description}</h5>
+        <ItemWrapper>
+            <div>
+                <h3>{props.product.name}</h3>
+                <p>{props.product.description}</p>
+                <p>${props.product.price.toFixed(2)}</p>
+            </div>
             <div>
                 <select onChange={(e) => setQuantity(Number(e.target.value))}>
                     <option value='1'>1</option>
@@ -26,6 +27,6 @@ export const ProductItem: FunctionComponent<Props> = (props) => {
                     Add To Cart
                 </button>
             </div>
-        </div>
+        </ItemWrapper>
     );
 };

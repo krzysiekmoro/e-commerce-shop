@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Product, Order } from './data/handleOrder';
-import { ProductList } from './components/productList';
-import { OrderDetails } from './components/orderDetails';
-import { Summary } from './components/summary';
+import { ProductsList } from './components/ProductsList';
+import { OrderDetails } from './components/OrderDetails';
+import { Summary } from './components/Summary';
 import { loadProducts, storeOrder } from './data/dataHandler';
 import {
     Switch,
@@ -42,7 +42,7 @@ const App: FunctionComponent = () => {
             <BrowserRouter>
                 <Switch>
                     <Route path='/products'>
-                        <ProductList
+                        <ProductsList
                             products={products}
                             categories={categories}
                             order={order}
