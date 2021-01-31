@@ -26,7 +26,7 @@ export const ProductItem: FunctionComponent<Props> = (props) => {
                     <option value='3'>3</option>
                 </select>
                 <button
-                    className='flex items-center ml-4 px-3 py-2 border rounded bg-blue-400 border-blue-500 hover:text-grey-400 hover:border-blue-600 hover:bg-blue-500'
+                    className='btn-blue mx-2'
                     onClick={() => props.callback(props.product, quantity)}
                 >
                     Add To Cart
