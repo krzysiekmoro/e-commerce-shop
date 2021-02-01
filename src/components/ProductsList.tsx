@@ -4,12 +4,14 @@ import { Categories } from './Categories';
 import { Header } from './Header';
 import { Product, Order } from '../data/handleOrder';
 import { ProductsWrapper } from '../styles/productsList.styles';
+import { TailSpin } from '@agney/react-loading';
 
 interface Props {
     products: Product[];
     categories: string[];
     order: Order;
     addToOrder: (product: Product, quantity: number) => void;
+    isLoading: boolean;
 }
 
 export const ProductsList: FunctionComponent<Props> = (props) => {
@@ -21,6 +23,8 @@ export const ProductsList: FunctionComponent<Props> = (props) => {
     const selectCategory = (category: string) => {
         setCategory(category);
     };
+
+    if (props.isLoading) return <TailSpin />;
 
     return (
         <div>

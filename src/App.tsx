@@ -1,9 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Product, Order } from './data/handleOrder';
 import { ProductsList } from './components/ProductsList';
 import { OrderDetails } from './components/OrderDetails';
 import { Summary } from './components/Summary';
-import { loadProducts, storeOrder } from './data/dataHandler';
+import { storeOrder } from './data/dataHandler';
+import { useQuery } from 'react-query';
 import {
     Switch,
     Route,
@@ -26,44 +27,42 @@ const App: FunctionComponent = () => {
         setForce(force + 1);
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await loadProducts(setProducts);
-        };
-        fetchData();
-    }, []);
+    const { isLoading } = useQuery('storeData', () =>
+        fetch('https://fakestoreapi.com/products')
+            .then((res) => res.json())
+            .then((json) => setProducts(json))
+    );
 
     const submitCallback = (routeProps: RouteComponentProps) => {
         storeOrder(order, (id) => routeProps.history.push(`/summary/${id}`));
     };
 
     return (
-        <div>
-            <BrowserRouter>
-                <Switch>
-                    <Route path='/products'>
-                        <ProductsList
-                            products={products}
-                            categories={categories}
-                            order={order}
-                            addToOrder={addToOrder}
-                        />
-                    </Route>
-                    <Route
-                        path='/order'
-                        render={(props) => (
-                            <OrderDetails
-                                {...props}
-                                order={order}
-                                submitCallback={() => submitCallback(props)}
-                            />
-                        )}
+        <BrowserRouter>
+            <Switch>
+                <Route path='/products'>
+                    <ProductsList
+                        products={products}
+                        categories={categories}
+                        order={order}
+                        addToOrder={addToOrder}
+                        isLoading={isLoading}
                     />
-                    <Route path='/summary/:id' component={Summary} />
-                    <Redirect to='/products' />
-                </Switch>
-            </BrowserRouter>
-        </div>
+                </Route>
+                <Route
+                    path='/order'
+                    render={(props) => (
+                        <OrderDetails
+                            {...props}
+                            order={order}
+                            submitCallback={() => submitCallback(props)}
+                        />
+                    )}
+                />
+                <Route path='/summary/:id' component={Summary} />
+                <Redirect to='/products' />
+            </Switch>
+        </BrowserRouter>
     );
 };
 

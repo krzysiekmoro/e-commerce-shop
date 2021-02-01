@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Product } from '../data/handleOrder';
-import { ItemWrapper } from '../styles/item.styles';
+import { Button, ItemWrapper } from '../styles/item.styles';
 
 interface Props {
     product: Product;
@@ -12,21 +12,23 @@ export const Item: FunctionComponent<Props> = (props) => {
 
     return (
         <ItemWrapper>
+            <img alt='one of the product' src={props.product.image} />
             <div>
                 <h3>{props.product.name}</h3>
                 <p>{props.product.description}</p>
                 <p>${props.product.price.toFixed(2)}</p>
             </div>
-            <div>
+            <form>
                 <select onChange={(e) => setQuantity(Number(e.target.value))}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
                 </select>
-                <button onClick={() => props.callback(props.product, quantity)}>
-                    Add To Cart
-                </button>
-            </div>
+                <Button onClick={() => props.callback(props.product, quantity)}>
+                    <div id='underline'></div>
+                    <p>Add To Cart</p>
+                </Button>
+            </form>
         </ItemWrapper>
     );
 };
