@@ -1,34 +1,37 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Product } from '../data/handleOrder';
-import { Button, ItemWrapper } from '../styles/item.styles';
+import { ItemWrapper } from '../styles/item.styles';
 
 interface Props {
     product: Product;
-    callback: (product: Product, quantity: number) => void;
+}
+
+enum CardState {
+    isCollapsed = 'is-collapsed',
+    isExpanded = 'is-expanded',
 }
 
 export const Item: FunctionComponent<Props> = (props) => {
-    const [quantity, setQuantity] = useState<number>(1);
+    const [cardState, setCardState] = useState(CardState.isCollapsed);
+
+    const handleExpand = () => {
+        if (cardState === CardState.isCollapsed)
+            setCardState(CardState.isExpanded);
+        else setCardState(CardState.isCollapsed);
+    };
 
     return (
-        <ItemWrapper>
-            <img alt='one of the product' src={props.product.image} />
-            <div>
-                <h3>{props.product.name}</h3>
-                <p>{props.product.description}</p>
-                <p>${props.product.price.toFixed(2)}</p>
+        <ItemWrapper onClick={() => handleExpand()} className={cardState}>
+            <div className='card-content'>
+                <div id='image-wrapper'>
+                    <img alt='one of the products' src={props.product.image} />
+                </div>
+                <div>
+                    <h3>{props.product.title}</h3>
+                    <p>${props.product.price.toFixed(2)}</p>
+                </div>
             </div>
-            <form>
-                <select onChange={(e) => setQuantity(Number(e.target.value))}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                </select>
-                <Button onClick={() => props.callback(props.product, quantity)}>
-                    <div id='underline'></div>
-                    <p>Add To Cart</p>
-                </Button>
-            </form>
+            <div className={`expander`}>Expander</div>
         </ItemWrapper>
     );
 };

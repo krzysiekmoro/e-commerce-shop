@@ -18,7 +18,7 @@ export const storeOrder = async (order: Order, callback: (id: number) => void): 
     let orderData = {
         lines: [...order.orderLines.values()].map(line => ({
             productId: line.product.id,
-            productName: line.product.name,
+            productName: line.product.title,
             quantity: line.quantity
         }))
     }

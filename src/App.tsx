@@ -12,6 +12,7 @@ import {
     BrowserRouter,
     RouteComponentProps,
 } from 'react-router-dom';
+import { ItemDetails } from './components/ItemDetails';
 
 const App: FunctionComponent = () => {
     const [order, setOrder] = useState<Order>(new Order());
@@ -45,9 +46,11 @@ const App: FunctionComponent = () => {
                         products={products}
                         categories={categories}
                         order={order}
-                        addToOrder={addToOrder}
                         isLoading={isLoading}
                     />
+                </Route>
+                <Route path='/details/:id'>
+                    <ItemDetails products={products} callback={addToOrder} />
                 </Route>
                 <Route
                     path='/order'

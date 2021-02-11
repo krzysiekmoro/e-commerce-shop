@@ -19,7 +19,7 @@ export const Categories: FunctionComponent<Props> = (props) => {
                         onClick={() => props.selectCategory(c)}
                         className={`${btnClass}`}
                     >
-                        {c}
+                        {c.toUpperCase()}
                     </Button>
                 );
             })}

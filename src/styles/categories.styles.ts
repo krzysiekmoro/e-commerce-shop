@@ -7,4 +7,9 @@ export const CategoriesWrapper = styled.div`
     width: 100%;
     background-color: lightgray;
     padding: 5px;
+    justify-content: center;
+
+    Button {
+        margin: 0 10px;
+    }
 `;

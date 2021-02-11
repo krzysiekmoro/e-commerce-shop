@@ -25,7 +25,7 @@ export const OrderDetails: FunctionComponent<Props> = (props) => {
                         {props.order.orderLines.map((line) => (
                             <tr key={line.product.id}>
                                 <td>{line.quantity}</td>
-                                <td>{line.product.name}</td>
+                                <td>{line.product.title}</td>
                                 <td>${line.product.price.toFixed(2)}</td>
                                 <td>${line.total.toFixed(2)}</td>
                             </tr>

@@ -5,12 +5,12 @@ import { Header } from './Header';
 import { Product, Order } from '../data/handleOrder';
 import { ProductsWrapper } from '../styles/productsList.styles';
 import { TailSpin } from '@agney/react-loading';
+import { Link } from 'react-router-dom';
 
 interface Props {
     products: Product[];
     categories: string[];
     order: Order;
-    addToOrder: (product: Product, quantity: number) => void;
     isLoading: boolean;
 }
 
@@ -36,7 +36,9 @@ export const ProductsList: FunctionComponent<Props> = (props) => {
             />
             <ProductsWrapper>
                 {filteredProducts.map((p) => (
-                    <Item key={p.id} product={p} callback={props.addToOrder} />
+                    //<Link to={`/details/${p.id}`}>
+                    <Item key={p.id} product={p} />
+                    //</Link>
                 ))}
             </ProductsWrapper>
         </div>
