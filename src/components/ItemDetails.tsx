@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { Product } from '../data/handleOrder';
 import { Button, Container } from '../styles/itemDetails.styles';
 
@@ -26,12 +26,14 @@ export const ItemDetails: FunctionComponent<Props> = (props) => {
                 <h2>${product.price.toFixed(2)}</h2>
                 <p className='desc'>{product.description}</p>
                 <div className='buttons'>
-                    <Button
-                        className='add'
-                        onClick={() => props.callback(product, quantity)}
-                    >
-                        Add to Cart
-                    </Button>
+                    <NavLink to='/products'>
+                        <Button
+                            className='add'
+                            onClick={() => props.callback(product, quantity)}
+                        >
+                            Add to Cart
+                        </Button>
+                    </NavLink>
                     <Button className='like'>
                         <span>♥</span>
                     </Button>
