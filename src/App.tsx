@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Product, Order } from './data/handleOrder';
 import { ProductsList } from './components/ProductsList';
-import { OrderDetails } from './components/OrderDetails';
+import { Cart } from './components/Cart';
 import { Summary } from './components/Summary';
 import { storeOrder } from './data/dataHandler';
 import { useQuery } from 'react-query';
@@ -41,21 +41,26 @@ const App: FunctionComponent = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path='/products'>
-                    <ProductsList
-                        products={products}
-                        categories={categories}
-                        order={order}
-                        isLoading={isLoading}
-                    />
-                </Route>
+                <Route
+                    path='/products'
+                    render={(props) => (
+                        <ProductsList
+                            {...props}
+                            products={products}
+                            categories={categories}
+                            order={order}
+                            isLoading={isLoading}
+                            submitCallback={() => submitCallback(props)}
+                        />
+                    )}
+                />
                 <Route path='/details/:id'>
                     <ItemDetails products={products} callback={addToOrder} />
                 </Route>
                 <Route
                     path='/order'
                     render={(props) => (
-                        <OrderDetails
+                        <Cart
                             {...props}
                             order={order}
                             submitCallback={() => submitCallback(props)}

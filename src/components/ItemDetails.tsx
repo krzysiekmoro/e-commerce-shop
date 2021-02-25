@@ -38,6 +38,7 @@ export const ItemDetails: FunctionComponent<Props> = (props) => {
                         <span>♥</span>
                     </Button>
                 </div>
+
                 <form>
                     <label className='pick'>choose quantity</label>
                     <select
